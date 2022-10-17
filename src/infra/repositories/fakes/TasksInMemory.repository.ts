@@ -21,6 +21,10 @@ export class TasksRepositoryInMemory implements ITaskRepository {
 		return this.tasks.filter((task) => task.user_info === userId);
 	}
 
+	async deleteTaskById(taskId: string): Promise<any> {
+		return this.tasks.filter((task) => task.id !== taskId);
+	}
+
 	// async update(id: string, updateInfo: any): Promise<any> {
 	// 	this.tasks.map((task) => {
 	// 		if (task.id === id) {

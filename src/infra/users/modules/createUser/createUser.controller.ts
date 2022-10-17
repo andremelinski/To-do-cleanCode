@@ -15,7 +15,7 @@ export class CreateUseController {
 			const user = await this.createUser.execute({ user_name, email, password });
 			return response.status(200).json(user);
 		} catch (err) {
-			return response.status(400).json({ err: err.message || err });
+			return response.status(500).json({ err: err.message || err });
 		}
 	}
 }

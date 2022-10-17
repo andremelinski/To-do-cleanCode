@@ -16,7 +16,7 @@ export class UpdateUserController {
 			const user = await this.updateUserService.execute({ email, user_name, password });
 			return response.status(200).json(user);
 		} catch (err) {
-			return response.status(400).json({ err: err.message || err });
+			return response.status(500).json({ err: err.message || err });
 		}
 	}
 }

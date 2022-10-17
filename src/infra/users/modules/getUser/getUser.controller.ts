@@ -12,12 +12,14 @@ export class GetUserController {
 	) {}
 
 	async handle(request: Request, response: Response) {
-		const userInfo = request.body;
 		try {
-			const user = await this.getUserService.execute(userInfo);
+			if (!Object.keys(request.body).length) {
+				return response.status(404).json('email not provided');
+			}
+			const user = await this.getUserService.execute(request.body);
 			return response.status(200).json(user);
 		} catch (err) {
-			return response.status(400).json({ err: err.message || err });
+			return response.status(500).json({ err: err.message || err });
 		}
 	}
 }

@@ -1,9 +1,11 @@
 import 'reflect-metadata';
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, CreateDateColumn } from 'typeorm';
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, CreateDateColumn, BeforeUpdate } from 'typeorm';
+import { IsEmail, IsNotEmpty, IsOptional, IsString, IsUUID, MinLength } from 'class-validator';
 @Entity('users')
 export class User {
 	@PrimaryGeneratedColumn('uuid')
+	@IsOptional()
+	@IsUUID(4)
 	id?: string;
 
 	@Column()
@@ -12,7 +14,6 @@ export class User {
 	user_name: string;
 
 	@Column()
-	@IsString()
 	@IsNotEmpty()
 	@IsEmail()
 	email: string;
@@ -20,22 +21,16 @@ export class User {
 	@Column()
 	@IsString()
 	@IsNotEmpty()
-	@MinLength(2)
+	@MinLength(4, {
+		message: 'Password is too short. Minimal length is $constraint1 characters',
+	})
 	password: string;
 
 	@CreateDateColumn({ type: 'timestamptz' })
 	created_at?: Date;
 
-	@CreateDateColumn({ type: 'timestamptz' })
+	@Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP(6)' })
 	updated_at?: Date;
-
-	// @BeforeInsert()
-	// generateId() {
-	// 	if (this.id) {
-	// 		return;
-	// 	}
-	// 	this.id = uuid();
-	// }
 
 	private constructor(userInfo: User) {
 		return Object.assign(this, {

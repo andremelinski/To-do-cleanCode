@@ -8,4 +8,8 @@ interface IGetTaskByUserService {
 	execute(userId: string): Promise<Task[]>;
 }
 
-export { ITaskService, IGetTaskByUserService };
+interface IDeleteUserService {
+	execute(request): Promise<Task>;
+}
+
+export { ITaskService, IGetTaskByUserService, IDeleteUserService };

@@ -1,11 +1,22 @@
-import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, IsUUID, Validate } from 'class-validator';
 
-export class CrateTasksDto {
-	@IsInt()
+export class DeleteTaskDto {
+	@IsUUID(4)
 	@IsNotEmpty()
-	id: number;
+	id: string;
 
-	@IsString()
+	@IsUUID(4)
 	@IsNotEmpty()
-	user_id: string;
+	userId: string;
+
+	private constructor(taskInfo: DeleteTaskDto) {
+		return Object.assign(this, {
+			id: taskInfo?.id,
+			userId: taskInfo?.userId,
+		});
+	}
+
+	static create({ id, userId }: DeleteTaskDto) {
+		return new DeleteTaskDto({ id, userId });
+	}
 }

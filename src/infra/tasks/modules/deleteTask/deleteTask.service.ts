@@ -1,35 +1,31 @@
 import { validate } from 'class-validator';
-import 'reflect-metadata';
 import { inject, injectable } from 'tsyringe';
-import { Task } from '../../../../shared/typeorm/entities/Task.model';
 import { ITaskRepository } from '../../../repositories/ITasksRepository';
 import { IUsersRepository } from '../../../repositories/IUsersRepository';
 import { TasksRepository } from '../../../repositories/postgres/Tasks.repository';
 import { UsersRepository } from '../../../repositories/postgres/User.repository';
-import { CrateTaskDto } from '../../dtos/createTask.dto';
+import { DeleteTaskDto } from '../../dtos/deleteTask.dto';
 
 @injectable()
-export class CreateTaskService {
+export class DeleteTaskService {
 	constructor(
 		@inject(TasksRepository)
-		private readonly taskRepository: ITaskRepository,
+		private readonly tasksRepository: ITaskRepository,
+
 		@inject(UsersRepository)
 		private readonly usersRepository: IUsersRepository
 	) {}
 
-	async execute(taskInfo: CrateTaskDto, userEmail: string) {
-		const errors = await validate(CrateTaskDto.create(taskInfo));
+	async execute(taskInfo: DeleteTaskDto) {
+		const errors = await validate(DeleteTaskDto.create(taskInfo));
 
 		if (errors.length) {
 			const arrOfeErros = errors.reduce((acc, el) => [...acc, { field: el.property, constraints: el.constraints }], []);
 			throw new Error(JSON.stringify(arrOfeErros));
 		}
-		const userInfo = await this.usersRepository.getUserInfo(userEmail);
+		const { id: taskId, userId } = taskInfo;
+		const userInfo = await this.usersRepository.findUserById(userId);
 		if (!userInfo) throw new Error('User not found!');
-
-		const taskNormalized = Task.create({ ...taskInfo, user_info: userInfo.id });
-		console.log({ taskNormalized });
-		const taskCreation = await this.taskRepository.create(taskNormalized);
-		return taskCreation;
+		return await this.tasksRepository.deleteTaskById(taskId);
 	}
 }

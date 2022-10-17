@@ -11,7 +11,8 @@ class GetUserService {
 		private readonly usersRepository: IUsersRepository
 	) {}
 
-	async execute({ email }: GetUserDto) {
+	async execute(userInfo: GetUserDto) {
+		const { email } = userInfo;
 		const userExist = await this.usersRepository.exists(email);
 		if (!userExist) throw new Error('User does not exist!');
 		return await this.usersRepository.getUserInfo(email);

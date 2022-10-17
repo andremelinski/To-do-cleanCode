@@ -14,13 +14,14 @@ class CreateUserService {
 	) {}
 
 	async execute(userInfo: CrateUserDto) {
-		const userCreate = User.create(userInfo);
-		let errors = await validate(userCreate);
+		const newUserDto = CrateUserDto.create(userInfo);
+		const errors = await validate(newUserDto);
 
 		if (errors.length) {
 			const arrOfeErros = errors.reduce((acc, el) => [...acc, { field: el.property, constraints: el.constraints }], []);
 			throw new Error(JSON.stringify(arrOfeErros));
 		}
+		const userCreate = User.create(newUserDto);
 
 		const { email } = userCreate;
 		const userAlreadyExists = await this.usersRepository.exists(email);

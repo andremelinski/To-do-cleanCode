@@ -11,7 +11,7 @@ export class CreateTaskController {
 		private createTask: ITaskService
 	) {}
 	async handle(request: Request, response: Response) {
-		const { taskDescription: description, completed = false, userEmail } = request.body;
+		const { description, completed = false, userEmail } = request.body;
 		const taskInfo = { description, completed };
 		try {
 			const task = await this.createTask.execute(taskInfo, userEmail);
