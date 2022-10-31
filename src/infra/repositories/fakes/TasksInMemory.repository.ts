@@ -9,13 +9,16 @@ export class TasksRepositoryInMemory implements ITaskRepository {
 			id: uuid(),
 		});
 		this.tasks.push(taskInfo);
-		console.log(this.tasks);
 		return taskInfo;
 	}
 
 	// async getTaskInfo(id: string): Promise<Task> {
 	// 	return this.tasks.find((task) => task.id === id);
 	// }
+
+	async getAllTasks(): Promise<Task[]> {
+		return this.tasks;
+	}
 
 	async getTaskByUser(userId: string): Promise<Task[]> {
 		return this.tasks.filter((task) => task.user_info === userId);

@@ -9,7 +9,7 @@ class DeleteUserService {
 		private readonly usersRepository: IUsersRepository
 	) {}
 
-	async executeDelete(id: string): Promise<any> {
+	async executeDelete(id: string): Promise<Object> {
 		const userExist = await this.usersRepository.findUserById(id);
 		if (!userExist) {
 			throw new Error('User does not exist!');

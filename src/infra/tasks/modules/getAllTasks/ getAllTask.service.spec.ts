@@ -4,21 +4,21 @@ import { UsersRepositoryInMemory } from '../../../repositories/fakes/UsersInMemo
 import { CreateUserService } from '../../../users/modules/createUser/createUser.service';
 import { CrateTaskDto } from '../../dtos/createTask.dto';
 import { CreateTaskService } from '../createTask/createTask.service';
-import { GetTaskByUserService } from './getTaskByUser.service';
+import { GetAllTaskService } from './ getAllTask.service';
 
 describe('Task Creation - createTask Service', () => {
 	let usersRepository: UsersRepositoryInMemory;
 	let createUserService: CreateUserService;
 	let tasksRepository: TasksRepositoryInMemory;
 	let createTaskService: CreateTaskService;
-	let getTaskByUserService: GetTaskByUserService;
+	let getAllTaskService: GetAllTaskService;
 
 	beforeAll(() => {
 		usersRepository = new UsersRepositoryInMemory(); // where the data will come from
 		createUserService = new CreateUserService(usersRepository); // where the data is created is a constructor paremeter that must follow IUsersRepository
 		tasksRepository = new TasksRepositoryInMemory();
 		createTaskService = new CreateTaskService(tasksRepository, usersRepository);
-		getTaskByUserService = new GetTaskByUserService(tasksRepository, usersRepository);
+		getAllTaskService = new GetAllTaskService(tasksRepository);
 	});
 
 	it('New Task Creation', async () => {
@@ -35,7 +35,8 @@ describe('Task Creation - createTask Service', () => {
 		const task = await createTaskService.execute(taskInfo, user.email);
 		expect(task).toHaveProperty('id');
 		expect(task.user_info).toBe(user.id);
-		const tasksByUser = await getTaskByUserService.execute(user.id);
+		const tasksByUser = await getAllTaskService.execute();
 		expect(tasksByUser).toHaveLength(1);
+		expect(tasksByUser[0].description).toEqual('description');
 	});
 });

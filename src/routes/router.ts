@@ -4,8 +4,10 @@ import { container } from 'tsyringe';
 import { CreateUseController } from '../infra/users/modules/createUser/createUser.controller';
 import { UpdateUserController } from '../infra/users/modules/updateUser/updateUser.controller';
 import { GetUserController } from '../infra/users/modules/getUser/getUser.controller';
+import { DeleteUseController } from '../infra/users/modules/deleteUser/deleteUser.controller';
 import { CreateTaskController } from '../infra/tasks/modules/createTask/createTask.controller';
 import { GetTaskByUserController } from '../infra/tasks/modules/getTaskByUser/getTaskByUser.controller';
+import { GetAllTaskController } from '../infra/tasks/modules/getAllTasks/ getAllTask.controller';
 import { DeleteTaskController } from '../infra/tasks/modules/deleteTask/deleteTask.controller';
 const router = Router();
 router.get('/', async (req, res) => {
@@ -24,8 +26,8 @@ router.put('/user', async (req, res) => {
 	return await updateUserController.handle(req, res);
 });
 
-router.delete('/user/', async (req, res) => {
-	const updateUserController = container.resolve(UpdateUserController);
+router.delete('/user', async (req, res) => {
+	const updateUserController = container.resolve(DeleteUseController);
 	return await updateUserController.handle(req, res);
 });
 
@@ -41,6 +43,11 @@ router.get('/tasks/:userId', async (req, res) => {
 
 router.post('/tasks', async (req, res) => {
 	const newTaskController = container.resolve(CreateTaskController);
+	return await newTaskController.handle(req, res);
+});
+
+router.get('/tasks', async (req, res) => {
+	const newTaskController = container.resolve(GetAllTaskController);
 	return await newTaskController.handle(req, res);
 });
 

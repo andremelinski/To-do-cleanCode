@@ -28,7 +28,6 @@ export class CreateTaskService {
 		if (!userInfo) throw new Error('User not found!');
 
 		const taskNormalized = Task.create({ ...taskInfo, user_info: userInfo.id });
-		console.log({ taskNormalized });
 		const taskCreation = await this.taskRepository.create(taskNormalized);
 		return taskCreation;
 	}

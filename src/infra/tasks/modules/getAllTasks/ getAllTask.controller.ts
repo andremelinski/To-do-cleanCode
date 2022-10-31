@@ -2,10 +2,10 @@ import 'reflect-metadata';
 import { Request, Response } from 'express';
 import { delay, inject, singleton } from 'tsyringe';
 import { IGetTaskByUserService } from '../../ITaskService';
-import { GetTaskByUserService } from './getTaskByUser.service';
+import { GetTaskByUserService } from '../getTaskByUser/getTaskByUser.service';
 
 @singleton()
-export class GetTaskByUserController {
+export class GetAllTaskController {
 	constructor(
 		@inject(delay(() => GetTaskByUserService))
 		private getTask: IGetTaskByUserService

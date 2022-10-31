@@ -8,6 +8,10 @@ export class TasksRepository implements ITaskRepository {
 		return await this.taskRepository.save(taskInfo);
 	}
 
+	async getAllTasks(): Promise<Task[]> {
+		return await this.taskRepository.find();
+	}
+
 	async getTaskInfo(id: string): Promise<Task> {
 		return await this.taskRepository.findOneByOrFail({ id });
 	}

@@ -10,7 +10,6 @@ export class UsersRepositoryInMemory implements IUsersRepository {
 			id: uuid(),
 		});
 		this.users.push(user);
-		console.log({ create: this.users });
 		return user;
 	}
 

@@ -26,6 +26,7 @@ export class DeleteTaskService {
 		const { id: taskId, userId } = taskInfo;
 		const userInfo = await this.usersRepository.findUserById(userId);
 		if (!userInfo) throw new Error('User not found!');
-		return await this.tasksRepository.deleteTaskById(taskId);
+		const aqui = await this.tasksRepository.deleteTaskById(taskId);
+		return 'deleted';
 	}
 }

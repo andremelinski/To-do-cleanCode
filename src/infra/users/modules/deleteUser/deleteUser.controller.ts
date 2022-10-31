@@ -4,15 +4,15 @@ import { delay, inject, singleton } from 'tsyringe';
 import { IUserService } from '../IUserService';
 import { DeleteUserService } from './deleteUser.service';
 @singleton()
-export class CreateUseController {
+export class DeleteUseController {
 	constructor(
 		@inject(delay(() => DeleteUserService))
 		private readonly userInterface: IUserService
 	) {}
 	async handle(request: Request, response: Response) {
-		const { userId: id } = request.params;
+		const { userId: id } = request.body;
 		if (!id) {
-			return response.status(400).json({ err: 'id not provided' });
+			return response.status(404).json({ err: 'id not provided' });
 		}
 		try {
 			const user = await this.userInterface.executeDelete(id);
