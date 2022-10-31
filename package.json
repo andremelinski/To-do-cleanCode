@@ -37,6 +37,7 @@
 	"scripts": {
 		"start": "nodemon src/server.ts",
 		"typeorm": "ts-node-dev node_modules/.bin/typeorm",
+		"test-coverage": "jest --coverage",
 		"test": "jest"
 	}
 }

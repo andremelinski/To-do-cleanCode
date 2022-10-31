@@ -12,13 +12,13 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'npm test'
+                sh 'npm test-coverage'
             }
         }
     }
     post {
         always {
-            junit '**/coverage/*.xml'
+            junit '**/coverage/coverage-test/*.xml'
         }
         failure {
             echo 'fail'
