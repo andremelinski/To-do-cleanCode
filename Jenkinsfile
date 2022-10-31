@@ -19,7 +19,7 @@ pipeline {
     post {
         always {
             // junit '**/coverage/coverage-test/*.xml'
-            step([$class: 'CoberturaPublisher', coberturaReportFile: '/coverage/coverage-test/cobertura-coverage.xml'])
+            step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage-test/cobertura-coverage.xml'])
         }
         failure {
             echo 'fail'
