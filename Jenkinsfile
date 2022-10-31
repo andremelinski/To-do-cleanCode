@@ -18,7 +18,7 @@ pipeline {
     }
     post {
         always {
-            junit '**/coverage/*xml'
+            junit '**/coverage/*.xml'
         }
         failure {
             echo 'fail'
