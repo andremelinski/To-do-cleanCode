@@ -18,7 +18,7 @@ pipeline {
     }
     post {
         always {
-            // sh 'ls **/coverage/coverage-test'
+            sh 'ls coverage'
             // junit '**/coverage/coverage-test/*.xml'
             step([$class: 'CoberturaPublisher', coberturaReportFile: '**/coverage/coverage-test/*.xml'])
         }
