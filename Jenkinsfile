@@ -18,6 +18,7 @@ pipeline {
     }
     post {
         always {
+            sh 'ls **/coverage/coverage-test'
             junit '**/coverage/coverage-test/*.xml'
         }
         failure {
