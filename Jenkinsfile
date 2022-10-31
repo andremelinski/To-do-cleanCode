@@ -15,6 +15,7 @@ pipeline {
                 sh 'npm test'
             }
         }
+    }
     post {
         always {
             junit '**/coverage/*xml'
