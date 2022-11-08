@@ -12,11 +12,17 @@ pipeline {
         nodejs 'node:16-alpine'
     }
     stages {
-        // stage('Build') {
-        //     steps {
-        //         sh 'npm install'
-        //     }
-        // }
+        stage('verify tooling') {
+            steps {
+                sh '''
+                    docker version
+                    docker info
+                    docker-compose version
+                    curl --version
+                    jq --version
+                '''
+            }
+        }
         stage('Unit Test') {
             steps {
                 executablePermission()
