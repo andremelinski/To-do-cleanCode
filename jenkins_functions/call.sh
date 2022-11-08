@@ -11,8 +11,8 @@ die () {
 EXECUTABLE_DIR=$( dirname "${BASH_SOURCE[0]}")
 
 # source library
-if [[ -e ${EXECUTABLE_DIR}/generic_function_library.sh]]; then
-    . ${EXECUTABLE_DIR}/generic_function_library.sh
+if [[ -e ${EXECUTABLE_DIR}/generic_functions.sh]]; then
+    . ${EXECUTABLE_DIR}/generic_functions.sh
     # . ${EXECUTABLE_DIR}/app_spec_func_lib.sh 
 else 
     echo "Shell library not found!"
