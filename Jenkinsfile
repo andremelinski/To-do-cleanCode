@@ -19,6 +19,7 @@ pipeline {
         // }
         stage('Unit Test') {
             steps {
+                executablePermission()
                 retry(count: 3) {
                     unitTestNodeApp()
                 }
