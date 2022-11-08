@@ -1,3 +1,5 @@
+#!/bin/bash
+
 container_exec_sh_command(){
     local stack_name=$1
     shift
