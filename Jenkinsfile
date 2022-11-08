@@ -38,6 +38,10 @@ pipeline {
     }
 };
 
+def executablePermission() {
+    sh "cmhod ${CALL_SCRIPT} chmod +x" 
+}
+
 def unitTestNodeApp() {
     // sh "docker exec -it ts-node /bin/sh"
     // sh "docker exec -it tasks-db bash"
