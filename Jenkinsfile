@@ -4,7 +4,7 @@ pipeline {
         NODE_CONTAINER_NAME = "ts-node"
         DB_CONTAINER_NAME = "tasks-db"
         COMPOSE_STACK_NAME = "todo-clancode"
-        CALL_SCRIPT = "${WORKSPACE}/deploy/jenkins_includes/call.sh"
+        CALL_SCRIPT = "${WORKSPACE}/jenkins_functions/call.sh"
         NODE_VERSION = "v12.22.10"
     }
     tools {
