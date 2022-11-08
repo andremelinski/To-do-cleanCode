@@ -11,7 +11,7 @@ die () {
 EXECUTABLE_DIR=$( dirname "${BASH_SOURCE[0]}")
 
 # source library
-if [ -e ${EXECUTABLE_DIR}/generic_functions.sh]; then
+if [[ -e ${EXECUTABLE_DIR}/generic_functions.sh]]; then
     . ${EXECUTABLE_DIR}/generic_functions.sh
     # . ${EXECUTABLE_DIR}/app_spec_func_lib.sh 
 else 
