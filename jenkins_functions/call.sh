@@ -10,7 +10,6 @@ die () {
 
 EXECUTABLE_DIR=$( dirname "${BASH_SOURCE[0]}")
 
-sh "ls ${EXECUTABLE_DIR}"
 # source library
 if [[ -e ${EXECUTABLE_DIR}/generic_functions.sh ]]; then
     . ${EXECUTABLE_DIR}/generic_functions.sh
