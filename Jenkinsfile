@@ -30,7 +30,7 @@ pipeline {
     post {
         always {
             junit allowEmptyResults: true, testResults: 'coverage/coverage-test/cobertura-coverage.xml'
-            step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage-test/cobertura-coverage.xml'])
+            // step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage-test/cobertura-coverage.xml'])
             cleanWs() //cleanup workspace
         }
         failure {
