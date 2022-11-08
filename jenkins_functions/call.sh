@@ -10,9 +10,9 @@ die () {
 
 EXECUTABLE_DIR=$( dirname "${BASH_SOURCE[0]}")
 
+sh "ls ${EXECUTABLE_DIR}"
 # source library
-    echo "${EXECUTABLE_DIR}"
-if [[ -e ${EXECUTABLE_DIR}/generic_functions.sh]]; then
+if [[ -e ${EXECUTABLE_DIR}/generic_functions.sh ]]; then
     . ${EXECUTABLE_DIR}/generic_functions.sh
 else 
     echo "Shell library not found!"
