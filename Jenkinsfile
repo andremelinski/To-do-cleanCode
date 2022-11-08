@@ -17,6 +17,7 @@ pipeline {
                 sh '''
                     docker version
                     docker info
+                    which docker-compose
                     docker-compose version
                     curl --version
                     jq --version
