@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('verify tooling') {
             steps {
-                 sh 'docker-compose up'
+                 sh 'docker-compose build'
             }
         }
         stage('Unit Test') {
