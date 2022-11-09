@@ -16,8 +16,6 @@ pipeline {
             steps {
                 sh '''
                     docker version
-                    docker info
-                    jq --version
                     docker compose version
                 '''
             }
