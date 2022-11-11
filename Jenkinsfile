@@ -26,8 +26,9 @@ pipeline {
                 executablePermission()
                 retry(count: 3) {
                     // unitTestNodeApp()
+                    sh 'npm i'
+                    sh 'npm run test-coverage'
                 }
-                sh 'npm run test-coverage'
             }
         }
 
@@ -44,7 +45,7 @@ pipeline {
     post {
         always {
             junit allowEmptyResults: true, testResults: 'coverage/coverage-test/cobertura-coverage.xml'
-            // step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage-test/cobertura-coverage.xml'])
+            step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage-test/cobertura-coverage.xml'])
             cleanWs() //cleanup workspace
         }
         failure {
