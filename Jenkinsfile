@@ -31,7 +31,7 @@ pipeline {
             }
         }
 
-                stage('Unit Test') {
+        stage('Compose up') {
             steps {
                 executablePermission()
                 retry(count: 3) {
