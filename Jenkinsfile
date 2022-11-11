@@ -50,7 +50,7 @@ def executablePermission() {
 def unitTestNodeApp() {
     // sh "docker exec -it ts-node /bin/sh"
     // sh "docker exec -it tasks-db bash"
-    sh "${CALL_SCRIPT} container_exec_sh_command ${COMPOSE_STACK_NAME} ${NODE_CONTAINER_NAME} 'rm -rf /node_modules/'"
+    // sh "${CALL_SCRIPT} container_exec_sh_command ${COMPOSE_STACK_NAME} ${NODE_CONTAINER_NAME} 'rm -rf /node_modules/'"
     sh "${CALL_SCRIPT} container_exec_sh_command ${COMPOSE_STACK_NAME} ${NODE_CONTAINER_NAME} 'npm i nyc'"
     sh "sleep 60"
     sh "docker network disconnect -f ${COMPOSE_STACK_NAME}_default ${NODE_CONTAINER_NAME}"
