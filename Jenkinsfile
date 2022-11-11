@@ -34,10 +34,7 @@ pipeline {
 
         stage('Compose up') {
             steps {
-                executablePermission()
-                retry(count: 3) {
-                    // unitTestNodeApp()
-                }
+                sh 'ls'
                 sh 'docker-compose up'
             }
         }
