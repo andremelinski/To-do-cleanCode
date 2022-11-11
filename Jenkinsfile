@@ -25,9 +25,19 @@ pipeline {
             steps {
                 executablePermission()
                 retry(count: 3) {
-                    unitTestNodeApp()
+                    // unitTestNodeApp()
                 }
-                // sh 'npm run test-coverage'
+                sh 'npm run test-coverage'
+            }
+        }
+
+                stage('Unit Test') {
+            steps {
+                executablePermission()
+                retry(count: 3) {
+                    // unitTestNodeApp()
+                }
+                sh 'docker-compose up'
             }
         }
     }
