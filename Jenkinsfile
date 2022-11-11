@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo "BUILD NUMBER ${env.BUILD_NUMBER}"
                 echo "GIT_BRANCH NAME ${env.GIT_BRANCH}"
-                sh "find env/ -name '*.template' | xargs -i cp {} {}.env"
+                sh "for i in $( ls -a env/.*.template ); do cp $i ${i%.template}.txt; done"
                 sh "ls env -a"
             }
         }
