@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+    jenkins:
+        # image: jenkins/jenkins:lts
+        container_name: my-jenkins
+        privileged: true
+        user: root
+        restart: always
+        build: ../.docker/jenkins
+        ports:
+            - 8080:8080
+            - 50000:50000
+        volumes:
+            - ~/jenkins_data:/var/jenkins_home
+            - /var/run/docker.sock:/var/run/docker.sock
+# Start the my-jenkins container
+# docker-compose up -d
+
+# Get the initial admin password
+# docker exec my-jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+# Confirm the my-jenkins container is running
+# docker ps
+
+# a635f2130db94141b34c1b19aa60b3c1
+# andre
+# melinski
+
+# https://www.cloudbees.com/blog/how-to-install-and-run-jenkins-with-docker-compose

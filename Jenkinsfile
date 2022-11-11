@@ -12,9 +12,13 @@ pipeline {
         nodejs 'node:16-alpine'
     }
     stages {
-        stage('verify tooling') {
+        stage('BUILD_NUMBER') {
             steps {
-                 sh 'docker-compose build'
+                echo "BUILD NUMBER ${env.BUILD_NUMBER}"
+                echo "BRANCH NAME ${env.BRANCH_NAME}"
+                echo "BRANCH NAME ${env.GIT_BRANCH}"
+                sh "find env/ -name '*.template' | xargs -i cp {} {}.env"
+                sh "ls -a"
             }
         }
         stage('Unit Test') {
