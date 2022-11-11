@@ -15,10 +15,9 @@ pipeline {
         stage('BUILD_NUMBER') {
             steps {
                 echo "BUILD NUMBER ${env.BUILD_NUMBER}"
-                echo "BRANCH NAME ${env.BRANCH_NAME}"
-                echo "BRANCH NAME ${env.GIT_BRANCH}"
+                echo "GIT_BRANCH NAME ${env.GIT_BRANCH}"
                 sh "find env/ -name '*.template' | xargs -i cp {} {}.env"
-                sh "ls -a"
+                sh "ls env -a"
             }
         }
         stage('Unit Test') {
