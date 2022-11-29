@@ -5,19 +5,19 @@ services:
         container_name: ts-node
         build:
             context: .
-            target: base
-            dockerfile: ${DOCKERFILE}
+            target: ${BASE}
+            dockerfile: ${ENVIROMENT}.Dockerfile
         ports:
-            - 3000:${PORT}
+            - '3000:3000'
         volumes:
             - ./src:/home/node/app/src
-            - ./nodemon.json:/home/node/app/nodemon.json
+            # - ./nodemon.json:/home/node/app/nodemon.json
         env_file:
             - ./env/${ENV_FILE}
         depends_on:
             - db
             # - localstack
-        command: npm run start:dev
+        command: npm run start:prod
     db:
         build: .docker/postgres
         container_name: tasks-db

@@ -13,6 +13,7 @@ const router = Router();
 router.get('/', async (req, res) => {
 	return res.status(200).send('Hello');
 });
+
 router.get('/users', async (req, res) => {
 	const getUserController = container.resolve(GetUserController);
 	return await getUserController.handle(req, res);

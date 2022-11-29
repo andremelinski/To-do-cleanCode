@@ -5,6 +5,7 @@ TYPEORM_USERNAME=${TYPEORM_USERNAME}
 TYPEORM_PASSWORD=${TYPEORM_PASSWORD}
 TYPEORM_PORT=${TYPEORM_PORT}
 PORT=${PORT}
+
 # informa o type como ele vai lidar com a migration
 TYPEORM_ENTITIES=src/shared/typeorm/entities/*.model.{js,ts}
 TYPEORM_ENTITIES_DIR=src/shared/typeorm/entities

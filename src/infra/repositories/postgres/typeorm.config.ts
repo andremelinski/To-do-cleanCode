@@ -10,5 +10,5 @@ export const TypeORMConfig = {
 	logging: false,
 	entities: [process.env.TYPEORM_ENTITIES || 'src/shared/typeorm/entities/*.model.{js,ts}'],
 	migrations: [process.env.TYPEORM_MIGRATIONS || 'src/shared/typeorm/entities/*.{js,ts}'],
-	subscribers: [],
+	// subscribers: [],
 };

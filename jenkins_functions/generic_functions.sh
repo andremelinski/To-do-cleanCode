@@ -13,3 +13,16 @@ container_exec_sh_command(){
         echo "Missing command or container in container_run_command!"
     fi
 }
+
+envSet(){
+    local SOURCE_BRANCH=$1
+        case SOURCE_BRANCH in
+        "master")
+            sh "jenkins_functions/create_env.sh env-${SOURCE_BRANCH}.sh"
+            ;;
+        *)
+            echo "Not a valid argument"
+            sh "app-node/create_env.sh env-dev.sh"
+            ;;
+    esac
+}

@@ -37,7 +37,7 @@ export class UsersRepositoryInMemory implements IUsersRepository {
 		return this.users.find((user) => user.email === email);
 	}
 
-	async deleteUserById(id) {
+	async deleteUserById(id: string) {
 		this.users = this.users.filter((obj) => obj.id !== id);
 		return this.users;
 	}

@@ -1,7 +1,7 @@
 import { Task } from '../../shared/typeorm/entities/Task.model';
 
 interface ITaskService {
-	execute(taskInfo, email: string): Promise<Task>;
+	execute(taskInfo: { description: string; completed: boolean }, email: string): Promise<Task>;
 }
 
 interface IGetTaskByUserService {
@@ -9,7 +9,7 @@ interface IGetTaskByUserService {
 }
 
 interface IDeleteUserService {
-	execute(request): Promise<Task>;
+	execute(request: any): Promise<Task>;
 }
 
 export { ITaskService, IGetTaskByUserService, IDeleteUserService };

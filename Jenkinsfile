@@ -12,6 +12,27 @@ pipeline {
         nodejs 'node:16-alpine'
     }
     stages {
+        stage('GET CREDENTIALS') {
+        steps {
+            script {
+            echo sh(returnStdout: true, script: 'env')
+            echo "Build Id: ${BUILD_ID}\n Git Commit: ${GIT_COMMIT}\n Current build: ${currentBuild.number}"
+            // Used in Multibranch pipeline when scanning from both branches/* & tags/* (branches/foo)
+            source_branch_array = env.BRANCH_NAME.split(',')
+            env.ENV = source_branch_array[0]
+            env.SOURCE_BRANCH = source_branch_array[0]
+            echo "Source Branch: ${SOURCE_BRANCH}"
+            sh "${CALL_SCRIPT} envSet ${env.SOURCE_BRANCH}'"
+            sh "cat env-${SOURCE_BRANCH}.sh"
+            // if (!isNamedBranch()) {
+            //     echo "Setting default profile for feature branch"
+            //     env.AWS_DEFAULT_PROFILE = "dev"
+            // } else {
+            //     env.AWS_DEFAULT_PROFILE = "${SOURCE_BRANCH}"
+            // }
+            }
+        }
+        }
         stage('BUILD_NUMBER') {
             steps {
                 echo "BUILD NUMBER ${env.BUILD_NUMBER}"
@@ -21,23 +42,25 @@ pipeline {
                 sh "ls env -a"
             }
         }
-        stage('Unit Test') {
-            steps {
-                executablePermission()
-                retry(count: 3) {
-                    // unitTestNodeApp()
-                    sh 'npm i'
-                    sh 'npm run test-coverage'
-                }
-            }
-        }
-
-        stage('Compose up') {
-            steps {
-                sh 'ls'
-                sh 'docker-compose up'
-            }
-        }
+        // stage('Unit Test') {
+        //     steps {
+        //         executablePermission()
+        //         retry(count: 3) {
+        //             // unitTestNodeApp()
+        //             sh 'npm i'
+        //             sh 'npm run test-coverage'
+        //         }
+        //     }
+        // }
+        // stage('Compose up') {
+        //     steps {
+        //         sh 'ls'
+        //         sh 'docker-compose up' // TODO distinguir pela env do job
+        //         // docker-compose --env-file ./env/.gateway.env up
+        //         // puxa as ENV de dev.sh  
+        //         // docker-compose 
+        //     }
+        // }
     }
     post {
         always {
@@ -65,4 +88,8 @@ def unitTestNodeApp() {
     sh "docker network disconnect -f ${COMPOSE_STACK_NAME}_default ${NODE_CONTAINER_NAME}"
     sh "${CALL_SCRIPT} container_exec_sh_command ${COMPOSE_STACK_NAME} ${NODE_CONTAINER_NAME} 'npm run test-coverage'"
     // sh "${CALL_SCRIPT} container_exec_sh_command ${COMPOSE_STACK_NAME} ${NODE_CONTAINER_NAME} 'rm -rf \${local_dir}'"
+}
+
+Boolean isNamedBranch() {
+  return SOURCE_BRANCH == "dev" || SOURCE_BRANCH == "qa" || SOURCE_BRANCH == "test" || SOURCE_BRANCH == "master"
 }
