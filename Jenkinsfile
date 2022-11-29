@@ -18,9 +18,7 @@ pipeline {
             echo sh(returnStdout: true, script: 'env')
             echo "Build Id: ${BUILD_ID}\n Git Commit: ${GIT_COMMIT}\n Current build: ${currentBuild.number}"
             // Used in Multibranch pipeline when scanning from both branches/* & tags/* (branches/foo)
-            source_branch_array = env.BRANCH_NAME.split(',')
-            env.ENV = source_branch_array[0]
-            env.SOURCE_BRANCH = source_branch_array[0]
+            env.SOURCE_BRANCH = env.GIT_BRANCH.split('/')[0]
             echo "Source Branch: ${SOURCE_BRANCH}"
             sh "${CALL_SCRIPT} envSet ${env.SOURCE_BRANCH}'"
             sh "cat env-${SOURCE_BRANCH}.sh"
