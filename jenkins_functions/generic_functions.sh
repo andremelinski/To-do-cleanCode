@@ -19,7 +19,7 @@ envSet(){
     case ${SOURCE_BRANCH} in
         "master")
             cat "create_env.sh"
-            sh -c "create_env.sh env/env-${SOURCE_BRANCH}.sh"
+            sh -c "./create_env.sh /env/env-${SOURCE_BRANCH}.sh"
             ;;
         *)
             echo "Not a valid argument"
