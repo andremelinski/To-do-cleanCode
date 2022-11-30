@@ -19,4 +19,4 @@ for i in $( ls -a env/.*.template ); do cp $i ${i%.template}.env; done
 cd -
 
 SCRIPT=$(basename "${0}")
-echo "Successfully created .env file"
+echo "Successfully created .env files"

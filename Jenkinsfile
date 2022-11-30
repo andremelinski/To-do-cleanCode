@@ -37,7 +37,7 @@ pipeline {
                 echo "BUILD NUMBER ${env.BUILD_NUMBER}"
                 echo "GIT_BRANCH NAME ${env.GIT_BRANCH}"
                 sh "node -v"
-                sh 'for i in $( ls -a env/.*.template ); do cp $i ${i%.template}.env; done'
+                // sh 'for i in $( ls -a env/.*.template ); do cp $i ${i%.template}.env; done'
                 sh "ls env -a"
             }
         }
