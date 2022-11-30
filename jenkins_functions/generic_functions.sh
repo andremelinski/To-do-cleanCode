@@ -16,7 +16,8 @@ container_exec_sh_command(){
 
 envSet(){
     local SOURCE_BRANCH=$1
-        case SOURCE_BRANCH in
+    echo SOURCE_BRANCH
+    case SOURCE_BRANCH in
         "master")
             sh "jenkins_functions/create_env.sh env-${SOURCE_BRANCH}.sh"
             ;;
