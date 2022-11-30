@@ -19,11 +19,11 @@ envSet(){
     echo SOURCE_BRANCH
     case SOURCE_BRANCH in
         "master")
-            sh "jenkins_functions/create_env.sh env-${SOURCE_BRANCH}.sh"
+            sh "jenkins_functions/create_env.sh env/env-${SOURCE_BRANCH}.sh"
             ;;
         *)
             echo "Not a valid argument"
-            sh "app-node/create_env.sh env-dev.sh"
+            sh "app-node/create_env.sh env/env-dev.sh"
             ;;
     esac
 }
