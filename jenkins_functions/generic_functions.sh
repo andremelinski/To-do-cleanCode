@@ -16,14 +16,13 @@ container_exec_sh_command(){
 
 envSet(){
     local SOURCE_BRANCH=$1
-    echo ${SOURCE_BRANCH}
     case ${SOURCE_BRANCH} in
         "master")
             sh "jenkins_functions/create_env.sh env/env-${SOURCE_BRANCH}.sh"
             ;;
         *)
             echo "Not a valid argument"
-            sh "app-node/create_env.sh env/env-dev.sh"
+            sh "jenkins_functions/create_env.sh env/env-dev.sh"
             ;;
     esac
 }
