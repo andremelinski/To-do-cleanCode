@@ -16,10 +16,11 @@ container_exec_sh_command(){
 
 envSet(){
     local SOURCE_BRANCH=$1
+    local FILE_DIR=$( dirname "${BASH_SOURCE[0]}")
     case ${SOURCE_BRANCH} in
         "master")
-            cat "./create_env.sh"
-            sh "./create_env.sh ./env/env-${SOURCE_BRANCH}.sh"
+            cat "${FILE_DIR}/create_env.sh"
+            sh "${FILE_DIR}/create_env.sh ./env/env-${SOURCE_BRANCH}.sh"
             ;;
         *)
             echo "Not a valid argument"
