@@ -20,6 +20,7 @@ pipeline {
             // Used in Multibranch pipeline when scanning from both branches/* & tags/* (branches/foo)
             env.SOURCE_BRANCH = env.GIT_BRANCH.split('/')[1]
             echo "Source Branch: ${SOURCE_BRANCH}"
+            executablePermission()
             sh "${CALL_SCRIPT} envSet ${env.SOURCE_BRANCH}"
             sh "cat env-${SOURCE_BRANCH}.sh"
             // if (!isNamedBranch()) {
