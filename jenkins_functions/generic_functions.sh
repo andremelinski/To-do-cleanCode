@@ -19,9 +19,12 @@ envSet(){
     local FILE_DIR=$( dirname "${BASH_SOURCE[0]}")
     case ${SOURCE_BRANCH} in
         "master")
-            # cat "${FILE_DIR}/create_env.sh"
+            echo "${SOURCE_BRANCH}.sh"
+            cat "${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh" 
+            echo "create_env"
+            cat "${FILE_DIR}/create_env.sh"
             sh "cd ${FILE_DIR}"
-            sh "${FILE_DIR}/create_env.sh ${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh"
+            # sh "${FILE_DIR}/create_env.sh ${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh"
             ;;
         *)
             echo "Not a valid argument"
