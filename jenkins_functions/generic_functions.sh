@@ -21,7 +21,7 @@ envSet(){
         "master")
             # cat "${FILE_DIR}/create_env.sh"
             sh "cd ${FILE_DIR}"
-            sh "create_env.sh env/env-${SOURCE_BRANCH}.sh"
+            sh "${FILE_DIR}/create_env.sh ${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh"
             ;;
         *)
             echo "Not a valid argument"
