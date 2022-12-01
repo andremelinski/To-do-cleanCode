@@ -23,7 +23,7 @@ envSet(){
             cat "${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh" 
             echo "create_env"
             cat "${FILE_DIR}/create_env.sh"
-            sh "cd ${FILE_DIR}"
+            sh -c "cd ${FILE_DIR}"
             # sh "${FILE_DIR}/create_env.sh ${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh"
             ;;
         *)
