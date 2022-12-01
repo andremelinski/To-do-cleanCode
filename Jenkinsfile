@@ -73,8 +73,8 @@ pipeline {
 };
 
 def executablePermission() {
-    sh "chmod +x ${CALL_SCRIPT}" 
-    sh "chmod +x -R ${env.WORKSPACE}"
+    // sh "chmod +x ${CALL_SCRIPT}" 
+    sh "chmod +x ${env.WORKSPACE}"
 }
 
 def unitTestNodeApp() {
