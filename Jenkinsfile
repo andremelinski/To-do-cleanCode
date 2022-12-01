@@ -22,7 +22,6 @@ pipeline {
             echo "Source Branch: ${SOURCE_BRANCH}"
             executablePermission()
             sh "${CALL_SCRIPT} envSet ${env.SOURCE_BRANCH}"
-            sh "cat env-${SOURCE_BRANCH}.sh"
             // if (!isNamedBranch()) {
             //     echo "Setting default profile for feature branch"
             //     env.AWS_DEFAULT_PROFILE = "dev"
