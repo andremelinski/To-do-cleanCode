@@ -20,6 +20,7 @@ envSet(){
     case ${SOURCE_BRANCH} in
         "master")
             echo "${SOURCE_BRANCH}.sh"
+            sh "chmod +x ${FILE_DIR}/create_env.sh" 
             echo "create_env"
             sh -c "${FILE_DIR}/create_env.sh ${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh"
             ;;
