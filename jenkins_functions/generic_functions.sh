@@ -24,7 +24,7 @@ envSet(){
             echo "create_env"
             cat "${FILE_DIR}/create_env.sh"
             sh -c "cd ${FILE_DIR}"
-            # sh "${FILE_DIR}/create_env.sh ${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh"
+            sh "${FILE_DIR}/create_env.sh ${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh"
             ;;
         *)
             echo "Not a valid argument"
