@@ -20,7 +20,7 @@ envSet(){
     case ${SOURCE_BRANCH} in
         "master")
             echo "${SOURCE_BRANCH}.sh"
-            cat "${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh" 
+            # cat "${FILE_DIR}/env/env-${SOURCE_BRANCH}.sh" 
             echo "create_env"
             cat "${FILE_DIR}/create_env.sh"
             sh -c "cd ${FILE_DIR}"
