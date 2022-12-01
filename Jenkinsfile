@@ -73,7 +73,7 @@ pipeline {
 };
 
 def executablePermission() {
-    sh "chmod +x ${CALL_SCRIPT}" 
+    sh "chmod +x ${WORKSPACE}/jenkins_functions" 
     // sh "chmod +x -R ${env.WORKSPACE}"
 }
 
