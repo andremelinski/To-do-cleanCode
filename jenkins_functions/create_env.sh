@@ -16,7 +16,8 @@ echo "Using $1 for the env file"
 # cd "${FILE_DIR}/env"
 # envsubst < env.template > .env
 for i in $( ls -a env/.*.template ); do cp $i ${i%.template}.env; done
-cd -
+# cd -
+cd /
 
 SCRIPT=$(basename "${0}")
 echo "Successfully created .env files"
